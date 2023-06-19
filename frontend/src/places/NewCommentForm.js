@@ -9,8 +9,14 @@ function NewCommentForm({ place, onSubmit }) {
         content: '',
         stars: 3,
         rant: false,
-        authorId: ''
+        authorId: authors[0]?.userId
     })
+
+    const { currentUser } = useContext(CurrentUser)
+
+if(!currentUser){
+    return <p>You must be logged in to leave a rant or rave.</p>
+}
 
     useEffect(() => {
         const fetchData = async () => {
